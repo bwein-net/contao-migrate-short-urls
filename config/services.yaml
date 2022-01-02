@@ -1,0 +1,11 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Bwein\MigrateShortUrls\:
+        resource: '../src/*'
+        exclude: '../src/{DependencyInjection}'
+
+    Terminal42\UrlRewriteBundle\EventListener\RewriteContainerListener:
+        alias: terminal42_url_rewrite.listener.rewrite_container
