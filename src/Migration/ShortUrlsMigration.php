@@ -55,10 +55,9 @@ class ShortUrlsMigration implements MigrationInterface
             );
         }
 
-        $statement = $this->connection->prepare('SELECT id FROM tl_short_urls WHERE migrated = 0');
-        $statement->executeQuery();
+        $query = 'SELECT true FROM tl_short_urls WHERE migrated = 0 LIMIT 1';
 
-        return $statement->rowCount() > 0;
+        return (bool) $this->connection->executeQuery($query)->fetchOne();
     }
 
     /**
